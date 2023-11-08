@@ -3,6 +3,10 @@ class MessageChannel < ApplicationCable::Channel
     stream_from 'message'
   end
 
+  def receive(data)
+    ActionCable.server.broadcast('message', data)
+  end
+
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
